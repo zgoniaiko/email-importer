@@ -38,6 +38,11 @@ class EmailProvider
      */
     private $token;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $executedAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class EmailProvider
     public function setToken(?string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function getExecutedAt(): ?\DateTimeInterface
+    {
+        return $this->executedAt;
+    }
+
+    public function setExecutedAt(?\DateTimeInterface $executedAt): self
+    {
+        $this->executedAt = $executedAt;
 
         return $this;
     }
