@@ -19,6 +19,16 @@ class EmailProviderRepository extends ServiceEntityRepository
         parent::__construct($registry, EmailProvider::class);
     }
 
+    public function getProviderQuery(\DateTime $date)
+    {
+        return $this->createQueryBuilder('ep')
+            ->andWhere('ep.executedAt <= :date')
+            ->setParameter('date', $date)
+            ->orderBy('ep.executedAt', 'DESC')
+            ->getQuery()
+        ;
+    }
+
     // /**
     //  * @return EmailProvider[] Returns an array of EmailProvider objects
     //  */
